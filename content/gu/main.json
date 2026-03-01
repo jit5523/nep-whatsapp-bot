@@ -1,0 +1,11 @@
+{
+    "id": "MAIN",
+    "title": "📘 *રાષ્ટ્રીય શિક્ષણ નીતિ 2020 સહાયક*",
+    "footer": "Developed by Jit Prajapati",
+    "options": {
+        "1": { "id": "PART1", "label": "🏫 શાળા શિક્ષણ" },
+        "2": { "id": "PART2", "label": "🎓 ઉચ્ચ શિક્ષણ" },
+        "3": { "id": "NCRF", "label": "🏦 નેશનલ ક્રેડિટ ફ્રેમવર્ક" },
+        "4": { "id": "LANGUAGE_SWITCH", "label": "🌐 ભાષા બદલો" }
+    }
+}

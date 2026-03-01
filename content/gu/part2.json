@@ -1,0 +1,88 @@
+{
+    "id": "PART2",
+    "title": "🎓 *ભાગ ૨: ઉચ્ચ શિક્ષણ*\n\nવિશ્વ સ્તરની યુનિવર્સિટી તરફ આગળ 🚀",
+    "footer": "Developed by Jit Prajapati",
+    "options": {
+        "1": {
+            "id": "PART2_CH9",
+            "label": "🏛 ગુણવત્તાયુક્ત યુનિવર્સિટી અને કોલેજો",
+            "summary": "ઉચ્ચ શિક્ષણ સંસ્થાઓને બહુવિષયક અને ગુણવત્તાયુક્ત બનાવવાનો ઉદ્દેશ છે.",
+            "detail": "સ્વાયત્તતા, સંશોધન સંસ્કૃતિ અને વૈશ્વિક ધોરણો દ્વારા સંસ્થાઓને મજબૂત બનાવવામાં આવશે.",
+            "example": "ઉદાહરણ: એક યુનિવર્સિટીમાં વિજ્ઞાન, કલા અને ટેક્નોલોજી સાથે અભ્યાસ.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "2": {
+            "id": "PART2_CH10",
+            "label": "🔄 સંસ્થાકીય પુનર્ગઠન",
+            "summary": "નાની અને વિખૂટેલી સંસ્થાઓને એકીકૃત કરવી.",
+            "detail": "મોટી અને સંસાધન સમૃદ્ધ બહુવિષયક સંસ્થાઓ બનાવવામાં આવશે.",
+            "example": "ઉદાહરણ: અનેક નાના કોલેજોનું એક સ્વાયત્ત યુનિવર્સિટીમાં વિલીનીકરણ.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "3": {
+            "id": "PART2_CH11",
+            "label": "🌐 બહુવિષયક શિક્ષણ",
+            "summary": "વિદ્યાર્થીઓને વિવિધ વિષયો પસંદ કરવાની સ્વતંત્રતા મળશે.",
+            "detail": "આ સર્જનાત્મકતા અને વિશ્લેષણાત્મક વિચારશક્તિ વધારશે.",
+            "example": "ઉદાહરણ: વિજ્ઞાન વિદ્યાર્થી સંગીત અથવા ફિલોસોફી પણ ભણી શકે.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "4": {
+            "id": "PART2_CH12",
+            "label": "🎓 વિદ્યાર્થી સહાય પ્રણાલી",
+            "summary": "વિદ્યાર્થીઓ માટે સ્કોલરશિપ અને માર્ગદર્શન પ્રણાલી મજબૂત બનાવવી.",
+            "detail": "આર્થિક અને સામાજિક અવરોધોને ઘટાડવા માટે ખાસ પગલાં લેવામાં આવશે.",
+            "example": "ઉદાહરણ: રાષ્ટ્રીય સ્કોલરશિપ પોર્ટલ દ્વારા સહાય.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "5": {
+            "id": "PART2_CH13",
+            "label": "👨‍🏫 ફેકલ્ટી વિકાસ",
+            "summary": "ફેકલ્ટીની ભરતી અને પ્રગતિ પારદર્શક અને ગુણઆધારિત રહેશે.",
+            "detail": "નિરંતર તાલીમ અને સંશોધન પ્રોત્સાહન આપવામાં આવશે.",
+            "example": "ઉદાહરણ: ફેકલ્ટી વિકાસ કાર્યક્રમ અને સંશોધન ગ્રાન્ટ.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "6": {
+            "id": "PART2_CH14",
+            "label": "⚖ સમાનતા અને સમાવેશ",
+            "summary": "પછાત વર્ગોને ઉચ્ચ શિક્ષણમાં સમાન તક આપવી.",
+            "detail": "લિંગ સંતુલન અને સામાજિક ન્યાય પર ભાર મુકાયો છે.",
+            "example": "ઉદાહરણ: અનામત અને લક્ષિત સ્કોલરશિપ.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "7": {
+            "id": "PART2_CH15",
+            "label": "📘 શિક્ષક શિક્ષણ",
+            "summary": "૪ વર્ષીય સંકલિત B.Ed. ફરજિયાત લાયકાત બનશે.",
+            "detail": "શિક્ષક તૈયારી કાર્યક્રમ બહુવિષયક અને સંશોધન આધારિત રહેશે.",
+            "example": "ઉદાહરણ: સંકલિત B.Ed. કાર્યક્રમ.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "8": {
+            "id": "PART2_CH16",
+            "label": "🛠 વ્યાવસાયિક શિક્ષણ",
+            "summary": "વ્યાવસાયિક શિક્ષણને મુખ્ય પ્રવાહમાં લાવવું.",
+            "detail": "ઇન્ટર્નશિપ અને કૌશલ્ય આધારિત અભ્યાસ પર ભાર.",
+            "example": "ઉદાહરણ: ડિગ્રી દરમિયાન ઉદ્યોગ ઇન્ટર્નશિપ.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "9": {
+            "id": "PART2_CH17",
+            "label": "🔬 નેશનલ રિસર્ચ ફાઉન્ડેશન",
+            "summary": "ગુણવત્તાયુક્ત સંશોધનને પ્રોત્સાહન આપવા માટે NRF સ્થાપિત થશે.",
+            "detail": "યુનિવર્સિટીઓમાં સંશોધન સંસ્કૃતિ મજબૂત બનાવવી.",
+            "example": "ઉદાહરણ: નવીનતા પ્રોજેક્ટ માટે સરકારી ગ્રાન્ટ.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        }
+    }
+}

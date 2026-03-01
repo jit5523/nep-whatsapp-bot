@@ -1,0 +1,11 @@
+{
+    "id": "MAIN",
+    "title": "📘 *NEP 2020 & NCrF Assistant*\n\nEmpowering Education in India 🇮🇳",
+    "footer": "Developed by Jit Prajapati",
+    "options": {
+        "1": { "id": "PART1", "label": "🏫 School Education" },
+        "2": { "id": "PART2", "label": "🎓 Higher Education" },
+        "3": { "id": "NCRF", "label": "🏦 National Credit Framework (NCrF)" },
+        "4": { "id": "LANGUAGE_SWITCH", "label": "🌐 Change Language" }
+    }
+}

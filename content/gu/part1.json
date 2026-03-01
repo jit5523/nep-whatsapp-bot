@@ -1,0 +1,79 @@
+{
+    "id": "PART1",
+    "title": "🏫 *ભાગ ૧: શાળા શિક્ષણ*\n\nભારતના ભવિષ્ય માટે મજબૂત પાયો 🇮🇳",
+    "footer": "Developed by Jit Prajapati",
+    "options": {
+        "1": {
+            "id": "PART1_CH1",
+            "label": "🧒 પ્રારંભિક બાળ સંભાળ અને શિક્ષણ (ECCE)",
+            "summary": "ECCE ૩ થી ૬ વર્ષની ઉંમરના બાળકો માટે મજબૂત શૈક્ષણિક પાયો બનાવે છે.",
+            "detail": "ECCEમાં રમત આધારિત, પ્રવૃત્તિ આધારિત અને શોધ આધારિત શિક્ષણ દ્વારા બાળકોનો માનસિક, ભાવનાત્મક અને શારીરિક વિકાસ થાય છે.",
+            "example": "ઉદાહરણ: ૪ વર્ષનો બાળક પુસ્તકોના બદલે ગીતો અને રમતો દ્વારા અક્ષર શીખે છે.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "2": {
+            "id": "PART1_CH2",
+            "label": "📖 આધારભૂત સાક્ષરતા અને ગણિત (FLN)",
+            "summary": "દરેક બાળક ધોરણ ૩ સુધી વાંચન અને ગણિતમાં કુશળ બને તે લક્ષ્ય છે.",
+            "detail": "આ રાષ્ટ્રીય પ્રાથમિકતા છે જેથી બાળકો આગળના અભ્યાસ માટે તૈયાર બને.",
+            "example": "ઉદાહરણ: ૮ વર્ષની ઉંમરે બાળક સરળ વાક્ય વાંચી શકે અને મૂળભૂત ગણિત કરી શકે.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "3": {
+            "id": "PART1_CH3",
+            "label": "🎒 શાળાછૂટા ઘટાડવા અને સર્વસમાવેશી પ્રવેશ",
+            "summary": "૨૦૩૦ સુધી ૧૦૦% વિદ્યાર્થીઓને શાળામાં જોડવાનો ઉદ્દેશ છે.",
+            "detail": "સુવિધાઓ, સ્કોલરશિપ અને લવચીક શિક્ષણ મોડલ દ્વારા શાળાછૂટા ઘટાડવા પ્રયત્ન કરવામાં આવશે.",
+            "example": "ઉદાહરણ: શાળાછૂટા વિદ્યાર્થીઓ માટે બ્રિજ કોર્સ.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "4": {
+            "id": "PART1_CH4",
+            "label": "🧩 અભ્યાસક્રમ અને શિક્ષણ પદ્ધતિ (5+3+3+4)",
+            "summary": "NEP 10+2 પદ્ધતિને બદલે 5+3+3+4 માળખું લાવે છે.",
+            "detail": "આ માળખું બાળકોના વિકાસના તબક્કા પ્રમાણે શિક્ષણ સુનિશ્ચિત કરે છે.",
+            "example": "ઉદાહરણ: ૩ વર્ષ પ્રી-સ્કૂલ + ધોરણ ૧-૨ = આધાર તબક્કો.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "5": {
+            "id": "PART1_CH5",
+            "label": "👩‍🏫 શિક્ષકો",
+            "summary": "શિક્ષકો NEP સુધારાનો મુખ્ય આધાર છે.",
+            "detail": "પારદર્શક ભરતી, તાલીમ અને વ્યાવસાયિક વિકાસ પર ભાર મુકાયો છે.",
+            "example": "ઉદાહરણ: ૪ વર્ષીય સંકલિત B.Ed. કાર્યક્રમ.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "6": {
+            "id": "PART1_CH6",
+            "label": "🌍 સમાન અને સર્વસમાવેશી શિક્ષણ",
+            "summary": "બધા વર્ગો માટે શિક્ષણની સમાન તક સુનિશ્ચિત કરવી.",
+            "detail": "લિંગ સમાનતા, SC/ST અને ગ્રામ્ય વિસ્તારો પર વિશેષ ધ્યાન.",
+            "example": "ઉદાહરણ: પછાત વર્ગો માટે સ્કોલરશિપ અને હોસ્ટેલ સુવિધા.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "7": {
+            "id": "PART1_CH7",
+            "label": "🏢 શાળા કોમ્પ્લેક્સ / ક્લસ્ટર",
+            "summary": "નાની શાળાઓને સંકલિત કરીને સંસાધનોનું વહેંચાણ.",
+            "detail": "શિક્ષકો વચ્ચે સહકાર અને સુવિધાઓનો વધુ સારો ઉપયોગ.",
+            "example": "ઉદાહરણ: નજીકની શાળાઓમાં રમતગમત સુવિધા શેર કરવી.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        },
+        "8": {
+            "id": "PART1_CH8",
+            "label": "📜 ધોરણ નિર્ધારણ અને માન્યતા",
+            "summary": "પારદર્શક અને સરળ નિયમન પદ્ધતિ.",
+            "detail": "ગુણવત્તા નિરીક્ષણ અને માન્યતા માટે સ્વતંત્ર સંસ્થાઓ.",
+            "example": "ઉદાહરણ: નિયમિત શાળા ઓડિટ.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "https://www.education.gov.in/sites/upload_files/mhrd/files/nep/2020/GUJARATI.pdf"
+        }
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "id": "NCRF",
+    "title": "🏦 *રાષ્ટ્રીય ક્રેડિટ ફ્રેમવર્ક (NCrF)*\n\nલવચીક અભ્યાસ અને ક્રેડિટ ટ્રાન્સફર 🔄",
+    "footer": "Developed by Jit Prajapati",
+    "options": {
+        "1": {
+            "id": "NCRF_OVERVIEW",
+            "label": "📘 NCrF શું છે?",
+            "summary": "NCrF એક એકીકૃત ક્રેડિટ સિસ્ટમ છે જે શાળા, ઉચ્ચ અને કૌશલ્ય શિક્ષણને જોડે છે.",
+            "detail": "વિદ્યાર્થીઓને વિવિધ અભ્યાસક્રમો વચ્ચે ક્રેડિટ સંગ્રહ અને ટ્રાન્સફર કરવાની સુવિધા મળે છે.",
+            "example": "ઉદાહરણ: એક વ્યાવસાયિક કોર્સના ક્રેડિટ ડિગ્રીમાં ગણવામાં આવે.",
+            "pdf_en": "https://www.ugc.gov.in/pdfnews/9028476_Report-of-National-Credit-Framework.pdf",
+            "pdf_gu": "https://www.ugc.gov.in/pdfnews/9028476_Report-of-National-Credit-Framework.pdf"
+        },
+        "2": {
+            "id": "NCRF_LEVELS",
+            "label": "📊 ક્રેડિટ સ્તરો (1–8)",
+            "summary": "ક્રેડિટ સ્તરો શૈક્ષણિક પ્રગતિ દર્શાવે છે.",
+            "detail": "આ સ્તરો પ્રાથમિક શિક્ષણથી લઈને ડોક્ટરલ અભ્યાસ સુધી વિસ્તરે છે.",
+            "example": "ઉદાહરણ: લેવલ ૪ = સિનિયર સેકન્ડરી, લેવલ ૭ = અનુસ્નાતક.",
+            "pdf_en": "https://www.ugc.gov.in/pdfnews/9028476_Report-of-National-Credit-Framework.pdf",
+            "pdf_gu": "https://www.ugc.gov.in/pdfnews/9028476_Report-of-National-Credit-Framework.pdf"
+        },
+        "3": {
+            "id": "NCRF_HOURS",
+            "label": "⏳ શૈક્ષણિક કલાકો",
+            "summary": "ક્રેડિટ નક્કી કરેલા શૈક્ષણિક કલાકો પર આધારિત છે.",
+            "detail": "ક્લાસરૂમ, પ્રેક્ટિકલ અને સ્વઅભ્યાસ સમયનો સમાવેશ થાય છે.",
+            "example": "ઉદાહરણ: ૪૦ કલાક = ૧ ક્રેડિટ.",
+            "pdf_en": "https://www.ugc.gov.in/pdfnews/9028476_Report-of-National-Credit-Framework.pdf",
+            "pdf_gu": "https://www.ugc.gov.in/pdfnews/9028476_Report-of-National-Credit-Framework.pdf"
+        },
+        "4": {
+            "id": "NCRF_ABC",
+            "label": "🏦 અકેડેમિક બેંક ઓફ ક્રેડિટ્સ (ABC)",
+            "summary": "ABC વિદ્યાર્થીઓના ક્રેડિટ ડિજિટલ રીતે સંગ્રહ કરે છે.",
+            "detail": "વિદ્યાર્થીઓ સંસ્થાઓ વચ્ચે ક્રેડિટ ટ્રાન્સફર કરી શકે છે.",
+            "example": "ઉદાહરણ: યુનિવર્સિટી A ના ક્રેડિટ યુનિવર્સિટી B માં માન્ય.",
+            "pdf_en": "https://www.ugc.gov.in/pdfnews/9028476_Report-of-National-Credit-Framework.pdf",
+            "pdf_gu": "https://www.ugc.gov.in/pdfnews/9028476_Report-of-National-Credit-Framework.pdf"
+        },
+        "5": {
+            "id": "NCRF_RPL",
+            "label": "🎖 પૂર્વ અનુભવની માન્યતા (RPL)",
+            "summary": "અનૌપચારિક અનુભવને પણ શૈક્ષણિક માન્યતા મળશે.",
+            "detail": "કામનો અનુભવ શૈક્ષણિક ક્રેડિટ તરીકે સ્વીકારવામાં આવશે.",
+            "example": "ઉદાહરણ: ટેકનિશિયનને તેમના અનુભવ માટે ક્રેડિટ મળે.",
+            "pdf_en": "https://www.ugc.gov.in/pdfnews/9028476_Report-of-National-Credit-Framework.pdf",
+            "pdf_gu": "https://www.ugc.gov.in/pdfnews/9028476_Report-of-National-Credit-Framework.pdf"
+        }
+    }
+}

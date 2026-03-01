@@ -1,0 +1,88 @@
+{
+    "id": "PART2",
+    "title": "🎓 *Part II: Higher Education*\n\nTransforming Universities & Colleges 🚀",
+    "footer": "Developed by Jit Prajapati",
+    "options": {
+        "1": {
+            "id": "PART2_CH9",
+            "label": "🏛 Quality Universities & Colleges",
+            "summary": "NEP aims to transform higher education institutions into multidisciplinary universities and colleges.",
+            "detail": "The policy promotes holistic education, strong research culture, and institutional autonomy to improve global standards.",
+            "example": "Example: A university offering engineering, arts, and science under one integrated system.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "GUJARATI_PDF_LINK"
+        },
+        "2": {
+            "id": "PART2_CH10",
+            "label": "🔄 Institutional Restructuring",
+            "summary": "HEIs will be reorganized into large multidisciplinary institutions.",
+            "detail": "The goal is to phase out small, fragmented colleges and move towards well-resourced institutions.",
+            "example": "Example: Multiple small colleges merging into one autonomous university.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "GUJARATI_PDF_LINK"
+        },
+        "3": {
+            "id": "PART2_CH11",
+            "label": "🌐 Multidisciplinary Education",
+            "summary": "Students can choose subjects across disciplines for holistic development.",
+            "detail": "Flexibility in subject selection encourages creativity and critical thinking.",
+            "example": "Example: A science student taking philosophy or music as elective subjects.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "GUJARATI_PDF_LINK"
+        },
+        "4": {
+            "id": "PART2_CH12",
+            "label": "🎓 Student Support Systems",
+            "summary": "Support systems like scholarships and mentorship programs will be strengthened.",
+            "detail": "The policy ensures equal opportunities and reduces financial barriers for students.",
+            "example": "Example: National Scholarship Portal providing financial aid.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "GUJARATI_PDF_LINK"
+        },
+        "5": {
+            "id": "PART2_CH13",
+            "label": "👨‍🏫 Faculty Development",
+            "summary": "Faculty recruitment and career progression will be transparent and merit-based.",
+            "detail": "Continuous professional development and research incentives are emphasized.",
+            "example": "Example: Faculty training programs and research grants.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "GUJARATI_PDF_LINK"
+        },
+        "6": {
+            "id": "PART2_CH14",
+            "label": "⚖ Equity & Inclusion",
+            "summary": "Ensures inclusive access to higher education for disadvantaged groups.",
+            "detail": "Special focus on gender balance and underrepresented communities.",
+            "example": "Example: Reserved seats and targeted scholarships.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "GUJARATI_PDF_LINK"
+        },
+        "7": {
+            "id": "PART2_CH15",
+            "label": "📘 Teacher Education",
+            "summary": "A 4-year integrated B.Ed. will be the minimum qualification for teachers.",
+            "detail": "Teacher preparation programs will be multidisciplinary and research-based.",
+            "example": "Example: Students completing integrated B.Ed. with subject specialization.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "GUJARATI_PDF_LINK"
+        },
+        "8": {
+            "id": "PART2_CH16",
+            "label": "🛠 Vocational Education",
+            "summary": "Vocational education will be integrated into mainstream education.",
+            "detail": "Students will have opportunities for internships and skill-based learning.",
+            "example": "Example: Engineering student doing industry internship during degree.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "GUJARATI_PDF_LINK"
+        },
+        "9": {
+            "id": "PART2_CH17",
+            "label": "🔬 National Research Foundation",
+            "summary": "NRF will fund and promote quality research across disciplines.",
+            "detail": "It aims to strengthen research ecosystem in universities and colleges.",
+            "example": "Example: Government-funded research grants for innovation projects.",
+            "pdf_en": "https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf",
+            "pdf_gu": "GUJARATI_PDF_LINK"
+        }
+    }
+}

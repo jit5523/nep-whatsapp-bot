@@ -26,11 +26,11 @@ process.on("unhandledRejection", (err) => {
 // 📌 HEALTH CHECK (Railway Required)
 // ===============================
 app.get("/", (req, res) => {
-    return res.status(200).send("🚀 NEP WhatsApp Bot Running");
+    return res.send("🚀 NEP WhatsApp Bot Running");
 });
 
 app.get("/health", (req, res) => {
-    return res.status(200).send("OK");
+    return res.send("OK");
 });
 
 // ===============================
@@ -103,31 +103,28 @@ Choose what you want:
 }
 
 // ===============================
-// 📌 META WEBHOOK VERIFICATION
+// 📌 META WEBHOOK VERIFICATION (CRITICAL FIX)
 // ===============================
 app.get("/webhook", (req, res) => {
-    const mode = req.query["hub.mode"];
-    const token = req.query["hub.verify_token"];
-    const challenge = req.query["hub.challenge"];
-
-    if (mode === "subscribe" && token === process.env.VERIFY_TOKEN) {
-        return res.status(200).send(challenge);
-    } else {
-        return res.sendStatus(403);
+    if (
+        req.query["hub.mode"] === "subscribe" &&
+        req.query["hub.verify_token"] === process.env.VERIFY_TOKEN
+    ) {
+        return res.send(req.query["hub.challenge"]);
     }
+    return res.sendStatus(403);
 });
 
 // ===============================
-// 📌 RECEIVE WHATSAPP MESSAGES
+// 📌 RECEIVE WHATSAPP WEBHOOK DATA
 // ===============================
 app.post("/webhook", async(req, res) => {
     try {
         console.log("Incoming Webhook:", JSON.stringify(req.body, null, 2));
-
-        res.sendStatus(200);
+        return res.sendStatus(200);
     } catch (err) {
         console.log("Webhook Error ❌", err);
-        res.sendStatus(500);
+        return res.sendStatus(500);
     }
 });
 
@@ -194,7 +191,7 @@ app.post("/message", async(req, res) => {
 });
 
 // ===============================
-// 📌 START SERVER AFTER MONGO CONNECT
+// 📌 START SERVER AFTER MONGO CONNECT (RAILWAY SAFE)
 // ===============================
 const PORT = process.env.PORT || 3000;
 

@@ -26,11 +26,11 @@ process.on("unhandledRejection", (err) => {
 // 📌 HEALTH CHECK (Railway Required)
 // ===============================
 app.get("/", (req, res) => {
-    return res.send("🚀 NEP WhatsApp Bot Running");
+    return res.status(200).send("🚀 NEP WhatsApp Bot Running");
 });
 
 app.get("/health", (req, res) => {
-    return res.send("OK");
+    return res.status(200).send("OK");
 });
 
 // ===============================
@@ -39,12 +39,7 @@ app.get("/health", (req, res) => {
 function loadContent(language, fileName) {
     try {
         const filePath = path.join(__dirname, "content", language, fileName);
-
-        if (!fs.existsSync(filePath)) {
-            console.log("File not found:", filePath);
-            return null;
-        }
-
+        if (!fs.existsSync(filePath)) return null;
         const data = fs.readFileSync(filePath, "utf-8");
         return JSON.parse(data);
     } catch (err) {
@@ -103,7 +98,7 @@ Choose what you want:
 }
 
 // ===============================
-// 📌 META WEBHOOK VERIFICATION (CRITICAL FIX)
+// 📌 META WEBHOOK VERIFICATION
 // ===============================
 app.get("/webhook", (req, res) => {
     if (
@@ -116,7 +111,7 @@ app.get("/webhook", (req, res) => {
 });
 
 // ===============================
-// 📌 RECEIVE WHATSAPP WEBHOOK DATA
+// 📌 RECEIVE WHATSAPP WEBHOOK
 // ===============================
 app.post("/webhook", async(req, res) => {
     try {
@@ -129,7 +124,7 @@ app.post("/webhook", async(req, res) => {
 });
 
 // ===============================
-// 📌 MAIN FSM ROUTE (Internal Testing)
+// 📌 MAIN FSM ROUTE (Manual Testing)
 // ===============================
 app.post("/message", async(req, res) => {
     try {
@@ -170,10 +165,8 @@ app.post("/message", async(req, res) => {
 
         if (currentMenu && currentMenu.options[userMessage]) {
             const selectedOption = currentMenu.options[userMessage];
-
             user.currentNode = selectedOption.id;
             await user.save();
-
             const nextMenu = loadNode(user.language, selectedOption.id);
             return res.json({ reply: renderMenu(nextMenu) });
         }
@@ -191,19 +184,23 @@ app.post("/message", async(req, res) => {
 });
 
 // ===============================
-// 📌 START SERVER AFTER MONGO CONNECT (RAILWAY SAFE)
+// 📌 START SERVER (RAILWAY SAFE)
 // ===============================
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
+async function startServer() {
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
         console.log("MongoDB Connected ✅");
 
-        app.listen(PORT, () => {
+        app.listen(PORT, "0.0.0.0", () => {
             console.log(`Server running on port ${PORT} 🚀`);
         });
-    })
-    .catch((err) => {
-        console.log("MongoDB Error ❌", err);
+
+    } catch (err) {
+        console.log("Startup Error ❌", err);
         process.exit(1);
-    });
+    }
+}
+
+startServer();

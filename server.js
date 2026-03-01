@@ -102,9 +102,11 @@ app.get("/webhook", (req, res) => {
     const challenge = req.query["hub.challenge"];
 
     if (mode === "subscribe" && token === process.env.VERIFY_TOKEN) {
-        return res.status(200).send(challenge); // MUST RETURN ONLY CHALLENGE
+        console.log("Webhook Verified ✅");
+        return res.status(200).send(challenge);
     }
 
+    console.log("Webhook Verification Failed ❌");
     return res.sendStatus(403);
 });
 
@@ -139,25 +141,33 @@ async function sendWhatsAppMessage(to, text) {
 =========================== */
 app.post("/webhook", async(req, res) => {
     try {
-        const entry = req.body.entry;
-        const changes = entry && entry.changes;
-        const value = changes && changes[0] && changes[0].value;
-        const messages = value && value.messages;
-        const message = messages && messages[0];
+        // Safe access to nested properties
+        if (!req.body ||
+            !req.body.entry ||
+            !req.body.entry[0] ||
+            !req.body.entry[0].changes ||
+            !req.body.entry[0].changes[0] ||
+            !req.body.entry[0].changes[0].value ||
+            !req.body.entry[0].changes[0].value.messages ||
+            !req.body.entry[0].changes[0].value.messages[0]
+        ) {
+            return res.sendStatus(200);
+        }
 
-        if (!message) return res.sendStatus(200);
-
+        const message = req.body.entry[0].changes[0].value.messages[0];
         const from = message.from;
-        const text = message.text && message.text.body ? message.text.body.trim() : null;
+        const text = message.text && message.text.body ? message.text.body.trim() : "";
 
+        if (!text) return res.sendStatus(200);
+
+        // Find or create user
         let user = await User.findOne({ phone: from });
         if (!user) {
             user = new User({ phone: from });
             await user.save();
         }
 
-        if (!text) return res.sendStatus(200);
-
+        // Handle "hi" command
         if (text.toLowerCase() === "hi") {
             user.currentNode = "MAIN";
             await user.save();
@@ -166,6 +176,7 @@ app.post("/webhook", async(req, res) => {
             return res.sendStatus(200);
         }
 
+        // Handle back and main menu
         if (text === "0" || text === "9") {
             user.currentNode = "MAIN";
             await user.save();
@@ -174,9 +185,10 @@ app.post("/webhook", async(req, res) => {
             return res.sendStatus(200);
         }
 
+        // Handle menu navigation
         const currentMenu = loadNode(user.language, user.currentNode);
 
-        if (currentMenu && currentMenu.options[text]) {
+        if (currentMenu && currentMenu.options && currentMenu.options[text]) {
             const selected = currentMenu.options[text];
 
             if (selected.summary) {
@@ -193,6 +205,7 @@ app.post("/webhook", async(req, res) => {
             return res.sendStatus(200);
         }
 
+        // Invalid option
         await sendWhatsAppMessage(from, "❌ Invalid option\nType *Hi* to restart.");
         return res.sendStatus(200);
 

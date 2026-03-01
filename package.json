@@ -1,14 +1,9 @@
 {
     "name": "nep-whatsapp-bot",
     "version": "1.0.0",
-    "description": "",
     "main": "server.js",
-    "engines": {
-        "node": "18.x"
-    },
-    "scripts": {
-        "start": "node server.js"
-    },
+    "engines": { "node": "18.x" },
+    "scripts": { "start": "node server.js" },
     "dependencies": {
         "axios": "^1.6.8",
         "dotenv": "^16.4.5",

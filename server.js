@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 // ===============================
-// 📌 GLOBAL ERROR HANDLERS (Railway Stability)
+// 📌 GLOBAL ERROR HANDLING
 // ===============================
 process.on("uncaughtException", (err) => {
     console.error("Uncaught Exception ❌", err);
@@ -23,14 +23,15 @@ process.on("unhandledRejection", (err) => {
 });
 
 // ===============================
-// 📌 MONGODB CONNECTION
+// 📌 HEALTH CHECK (Railway Required)
 // ===============================
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB Connected ✅"))
-    .catch((err) => {
-        console.log("MongoDB Error ❌");
-        console.log(err);
-    });
+app.get("/", (req, res) => {
+    res.status(200).send("🚀 NEP WhatsApp Bot Running");
+});
+
+app.get("/health", (req, res) => {
+    res.status(200).send("OK");
+});
 
 // ===============================
 // 📌 CONTENT LOADER FUNCTIONS
@@ -102,10 +103,24 @@ Choose what you want:
 }
 
 // ===============================
-// 📌 ROOT ROUTE
+// 📌 META WEBHOOK VERIFICATION
 // ===============================
-app.get("/", (req, res) => {
-    res.send("🚀 NEP WhatsApp Bot is Running");
+app.get("/webhook", (req, res) => {
+    const mode = req.query["hub.mode"];
+    const token = req.query["hub.verify_token"];
+    const challenge = req.query["hub.challenge"];
+
+    console.log("Mode:", mode);
+    console.log("Token from Meta:", token);
+    console.log("Token from ENV:", process.env.VERIFY_TOKEN);
+
+    if (mode === "subscribe" && token === process.env.VERIFY_TOKEN) {
+        console.log("Webhook Verified ✅");
+        return res.status(200).send(challenge);
+    } else {
+        console.log("Verification Failed ❌");
+        return res.sendStatus(403);
+    }
 });
 
 // ===============================
@@ -180,6 +195,7 @@ app.post("/message", async(req, res) => {
 
             user.currentNode = selectedOption.id;
             await user.save();
+
             const nextMenu = loadNode(user.language, selectedOption.id);
             return res.json({ reply: renderMenu(nextMenu) });
         }
@@ -229,27 +245,6 @@ app.post("/message", async(req, res) => {
 });
 
 // ===============================
-// 📌 META WEBHOOK VERIFICATION (FIXED)
-// ===============================
-app.get("/webhook", (req, res) => {
-    const mode = req.query["hub.mode"];
-    const token = req.query["hub.verify_token"];
-    const challenge = req.query["hub.challenge"];
-
-    console.log("Mode:", mode);
-    console.log("Token from Meta:", token);
-    console.log("Token from ENV:", process.env.VERIFY_TOKEN);
-
-    if (mode === "subscribe" && token === process.env.VERIFY_TOKEN) {
-        console.log("Webhook Verified ✅");
-        return res.status(200).send(challenge);
-    } else {
-        console.log("Verification Failed ❌");
-        return res.sendStatus(403);
-    }
-});
-
-// ===============================
 // 📌 START SERVER (Railway Safe)
 // ===============================
 const PORT = process.env.PORT || 3000;
@@ -257,3 +252,10 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT} 🚀`);
 });
+
+// ===============================
+// 📌 MONGODB CONNECTION
+// ===============================
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("MongoDB Connected ✅"))
+    .catch((err) => console.log("MongoDB Error ❌", err));

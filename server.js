@@ -16,7 +16,7 @@ if (process.env.MONGO_URI) {
         .then(() => console.log("MongoDB Connected ✅"))
         .catch(err => console.log("MongoDB Error ❌", err));
 } else {
-    console.log("⚠️ No MongoDB configured");
+    console.log("⚠️ No MongoDB configured (Skipping DB)");
 }
 
 /* ===========================
@@ -62,11 +62,7 @@ function renderMenu(menuData) {
     for (let key in menuData.options) {
         message += `${key}️⃣ ${menuData.options[key].label}\n`;
     }
-
-    message += "\n━━━━━━━━━━━━━━\n";
-    message += "🔙 9️⃣ Back\n";
-    message += "🏠 0️⃣ Main Menu";
-
+    message += "\n━━━━━━━━━━━━━━\n🔙 9️⃣ Back\n🏠 0️⃣ Main Menu";
     return message;
 }
 
@@ -94,7 +90,7 @@ app.get("/", (req, res) => {
 });
 
 /* ===========================
-   WEBHOOK VERIFICATION (CRITICAL)
+   WEBHOOK VERIFICATION
 =========================== */
 app.get("/webhook", (req, res) => {
     const mode = req.query["hub.mode"];
@@ -102,9 +98,8 @@ app.get("/webhook", (req, res) => {
     const challenge = req.query["hub.challenge"];
 
     if (mode === "subscribe" && token === process.env.VERIFY_TOKEN) {
-        return res.status(200).send(challenge); // MUST RETURN ONLY CHALLENGE
+        return res.status(200).send(challenge);
     }
-
     return res.sendStatus(403);
 });
 
@@ -131,11 +126,14 @@ async function sendWhatsAppMessage(to, text) {
 }
 
 /* ===========================
-   RECEIVE WHATSAPP MESSAGES
+   WHATSAPP WEBHOOK RECEIVE
 =========================== */
 app.post("/webhook", async(req, res) => {
     try {
-        const message = req.body ? .entry ? .[0] ? .changes ? .[0] ? .value ? .messages ? .[0];
+        const entry = req.body.entry ? .[0];
+        const changes = entry ? .changes ? .[0];
+        const message = changes ? .value ? .messages ? .[0];
+
         if (!message) return res.sendStatus(200);
 
         const from = message.from;
@@ -147,9 +145,7 @@ app.post("/webhook", async(req, res) => {
             await user.save();
         }
 
-        if (!text) return res.sendStatus(200);
-
-        if (text.toLowerCase() === "hi") {
+        if (text ? .toLowerCase() === "hi") {
             user.currentNode = "MAIN";
             await user.save();
             const menu = loadNode(user.language, "MAIN");
@@ -185,11 +181,11 @@ app.post("/webhook", async(req, res) => {
         }
 
         await sendWhatsAppMessage(from, "❌ Invalid option\nType *Hi* to restart.");
-        return res.sendStatus(200);
+        res.sendStatus(200);
 
     } catch (err) {
         console.log("Webhook Error ❌", err);
-        return res.sendStatus(500);
+        res.sendStatus(500);
     }
 });
 

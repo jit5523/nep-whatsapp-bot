@@ -248,17 +248,20 @@ app.post("/message", async(req, res) => {
 // 📌 META WEBHOOK VERIFICATION
 // ===============================
 app.get("/webhook", (req, res) => {
-    const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
-
     const mode = req.query["hub.mode"];
     const token = req.query["hub.verify_token"];
     const challenge = req.query["hub.challenge"];
 
-    if (mode === "subscribe" && token === VERIFY_TOKEN) {
-        console.log("Webhook verified ✅");
+    console.log("Mode:", mode);
+    console.log("Token from Meta:", token);
+    console.log("Token from ENV:", process.env.VERIFY_TOKEN);
+
+    if (mode && token === process.env.VERIFY_TOKEN) {
+        console.log("Verification Success ✅");
         return res.status(200).send(challenge);
     } else {
-        return res.status(403).send("Verification failed ❌");
+        console.log("Verification Failed ❌");
+        return res.send("Verification failed ❌");
     }
 });
 

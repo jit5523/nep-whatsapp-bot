@@ -12,39 +12,93 @@ const app = express();
 app.use(express.json());
 
 // ===============================
+// 📌 GLOBAL ERROR HANDLERS (Railway Stability)
+// ===============================
+process.on("uncaughtException", (err) => {
+    console.error("Uncaught Exception ❌", err);
+});
+
+process.on("unhandledRejection", (err) => {
+    console.error("Unhandled Rejection ❌", err);
+});
+
+// ===============================
 // 📌 MONGODB CONNECTION
 // ===============================
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB Connected ✅"))
     .catch((err) => {
-        console.error("MongoDB Error ❌", err);
-        process.exit(1);
+        console.log("MongoDB Error ❌");
+        console.log(err);
     });
 
 // ===============================
-// 📌 SAFE JSON LOADER
+// 📌 CONTENT LOADER FUNCTIONS
 // ===============================
 function loadContent(language, fileName) {
     try {
         const filePath = path.join(__dirname, "content", language, fileName);
+
+        if (!fs.existsSync(filePath)) {
+            console.log("File not found:", filePath);
+            return null;
+        }
+
         const data = fs.readFileSync(filePath, "utf-8");
         return JSON.parse(data);
     } catch (err) {
-        console.error("Content Load Error ❌", err);
+        console.log("JSON Load Error ❌", err);
         return null;
     }
 }
 
 function loadNode(language, nodeId) {
-    const map = {
-        MAIN: "main.json",
-        PART1: "part1.json",
-        PART2: "part2.json",
-        NCRF: "ncrf.json"
-    };
+    if (nodeId === "MAIN") return loadContent(language, "main.json");
+    if (nodeId === "PART1") return loadContent(language, "part1.json");
+    if (nodeId === "PART2") return loadContent(language, "part2.json");
+    if (nodeId === "NCRF") return loadContent(language, "ncrf.json");
+    return null;
+}
 
-    if (!map[nodeId]) return null;
-    return loadContent(language, map[nodeId]);
+// ===============================
+// 📌 RENDER FUNCTIONS
+// ===============================
+function renderMenu(menuData) {
+    if (!menuData) return "⚠️ Menu not available.";
+
+    let message = menuData.title + "\n\n";
+
+    for (let key in menuData.options) {
+        message += `${key}️⃣ ${menuData.options[key].label}\n`;
+    }
+
+    message += "\n━━━━━━━━━━━━━━\n";
+    message += "🔙 9️⃣ Back\n";
+    message += "🏠 0️⃣ Main Menu\n";
+
+    if (menuData.footer) {
+        message += `\n✨ ${menuData.footer}`;
+    }
+
+    return message;
+}
+
+function renderChapterOptions(chapterData) {
+    return `
+📘 ${chapterData.label}
+
+Choose what you want:
+
+1️⃣ Summary  
+2️⃣ Detailed Explanation  
+3️⃣ Simple Example  
+4️⃣ Download Official PDF  
+5️⃣ Explain in Simple Words  
+
+━━━━━━━━━━━━━━
+🔙 9️⃣ Back  
+🏠 0️⃣ Main Menu
+`;
 }
 
 // ===============================
@@ -55,7 +109,127 @@ app.get("/", (req, res) => {
 });
 
 // ===============================
-// 📌 META WEBHOOK VERIFICATION
+// 📌 MAIN FSM ROUTE
+// ===============================
+app.post("/message", async(req, res) => {
+    try {
+        const { phone, message } = req.body;
+
+        if (!phone || !message) {
+            return res.json({ reply: "⚠️ Missing phone or message" });
+        }
+
+        let user = await User.findOne({ phone });
+
+        if (!user) {
+            user = new User({
+                phone,
+                language: "en",
+                currentNode: "MAIN"
+            });
+            await user.save();
+        }
+
+        const userMessage = message.trim();
+
+        if (userMessage.toLowerCase() === "hi") {
+            user.currentNode = "MAIN";
+            await user.save();
+            const menu = loadNode(user.language, "MAIN");
+            return res.json({ reply: renderMenu(menu) });
+        }
+
+        if (userMessage === "0" || userMessage === "9") {
+            user.currentNode = "MAIN";
+            await user.save();
+            const menu = loadNode(user.language, "MAIN");
+            return res.json({ reply: renderMenu(menu) });
+        }
+
+        const currentMenu = loadNode(user.language, user.currentNode);
+
+        if (user.currentNode === "LANGUAGE_SWITCH") {
+            if (userMessage === "1") user.language = "en";
+            if (userMessage === "2") user.language = "gu";
+
+            user.currentNode = "MAIN";
+            await user.save();
+
+            const menu = loadNode(user.language, "MAIN");
+            return res.json({ reply: renderMenu(menu) });
+        }
+
+        if (currentMenu && currentMenu.options[userMessage]) {
+            const selectedOption = currentMenu.options[userMessage];
+
+            if (selectedOption.id === "LANGUAGE_SWITCH") {
+                user.currentNode = "LANGUAGE_SWITCH";
+                await user.save();
+                return res.json({
+                    reply: "🌐 Choose Language:\n\n1️⃣ English\n2️⃣ ગુજરાતી"
+                });
+            }
+
+            if (selectedOption.summary) {
+                user.currentNode = selectedOption.id;
+                await user.save();
+                return res.json({
+                    reply: renderChapterOptions(selectedOption)
+                });
+            }
+
+            user.currentNode = selectedOption.id;
+            await user.save();
+            const nextMenu = loadNode(user.language, selectedOption.id);
+            return res.json({ reply: renderMenu(nextMenu) });
+        }
+
+        const parentMenus = ["part1.json", "part2.json", "ncrf.json"];
+
+        for (let file of parentMenus) {
+            const data = loadContent(user.language, file);
+            if (!data) continue;
+
+            for (let key in data.options) {
+                const chapter = data.options[key];
+
+                if (chapter.id === user.currentNode) {
+                    if (userMessage === "1")
+                        return res.json({ reply: `📘 Summary:\n\n${chapter.summary}` });
+
+                    if (userMessage === "2")
+                        return res.json({ reply: `📖 Detailed Explanation:\n\n${chapter.detail}` });
+
+                    if (userMessage === "3")
+                        return res.json({ reply: `🧠 Simple Example:\n\n${chapter.example}` });
+
+                    if (userMessage === "4")
+                        return res.json({
+                            reply: `📄 Official PDF:\n\nEnglish:\n${chapter.pdf_en}\n\nGujarati:\n${chapter.pdf_gu}`
+                        });
+
+                    if (userMessage === "5")
+                        return res.json({
+                            reply: `🤓 Simple Explanation:\n\nThink of this like building a strong foundation before constructing a house.`
+                        });
+                }
+            }
+        }
+
+        return res.json({
+            reply: "❌ Invalid option\n\nType 'Hi' to restart."
+        });
+
+    } catch (error) {
+        console.log("Error ❌", error);
+        return res.json({
+            reply: "⚠️ Something went wrong."
+        });
+    }
+});
+
+// ===============================
+// 📌 META WEBHOOK VERIFICATION (FIXED)
 // ===============================
 app.get("/webhook", (req, res) => {
     const mode = req.query["hub.mode"];

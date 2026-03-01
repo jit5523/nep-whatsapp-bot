@@ -26,11 +26,11 @@ process.on("unhandledRejection", (err) => {
 // 📌 HEALTH CHECK (Railway Required)
 // ===============================
 app.get("/", (req, res) => {
-    res.status(200).send("🚀 NEP WhatsApp Bot Running");
+    return res.status(200).send("🚀 NEP WhatsApp Bot Running");
 });
 
 app.get("/health", (req, res) => {
-    res.status(200).send("OK");
+    return res.status(200).send("OK");
 });
 
 // ===============================
@@ -110,21 +110,29 @@ app.get("/webhook", (req, res) => {
     const token = req.query["hub.verify_token"];
     const challenge = req.query["hub.challenge"];
 
-    console.log("Mode:", mode);
-    console.log("Token from Meta:", token);
-    console.log("Token from ENV:", process.env.VERIFY_TOKEN);
-
     if (mode === "subscribe" && token === process.env.VERIFY_TOKEN) {
-        console.log("Webhook Verified ✅");
         return res.status(200).send(challenge);
     } else {
-        console.log("Verification Failed ❌");
         return res.sendStatus(403);
     }
 });
 
 // ===============================
-// 📌 MAIN FSM ROUTE
+// 📌 RECEIVE WHATSAPP MESSAGES
+// ===============================
+app.post("/webhook", async(req, res) => {
+    try {
+        console.log("Incoming Webhook:", JSON.stringify(req.body, null, 2));
+
+        res.sendStatus(200);
+    } catch (err) {
+        console.log("Webhook Error ❌", err);
+        res.sendStatus(500);
+    }
+});
+
+// ===============================
+// 📌 MAIN FSM ROUTE (Internal Testing)
 // ===============================
 app.post("/message", async(req, res) => {
     try {
@@ -163,73 +171,14 @@ app.post("/message", async(req, res) => {
 
         const currentMenu = loadNode(user.language, user.currentNode);
 
-        if (user.currentNode === "LANGUAGE_SWITCH") {
-            if (userMessage === "1") user.language = "en";
-            if (userMessage === "2") user.language = "gu";
-
-            user.currentNode = "MAIN";
-            await user.save();
-
-            const menu = loadNode(user.language, "MAIN");
-            return res.json({ reply: renderMenu(menu) });
-        }
-
         if (currentMenu && currentMenu.options[userMessage]) {
             const selectedOption = currentMenu.options[userMessage];
-
-            if (selectedOption.id === "LANGUAGE_SWITCH") {
-                user.currentNode = "LANGUAGE_SWITCH";
-                await user.save();
-                return res.json({
-                    reply: "🌐 Choose Language:\n\n1️⃣ English\n2️⃣ ગુજરાતી"
-                });
-            }
-
-            if (selectedOption.summary) {
-                user.currentNode = selectedOption.id;
-                await user.save();
-                return res.json({
-                    reply: renderChapterOptions(selectedOption)
-                });
-            }
 
             user.currentNode = selectedOption.id;
             await user.save();
 
             const nextMenu = loadNode(user.language, selectedOption.id);
             return res.json({ reply: renderMenu(nextMenu) });
-        }
-
-        const parentMenus = ["part1.json", "part2.json", "ncrf.json"];
-
-        for (let file of parentMenus) {
-            const data = loadContent(user.language, file);
-            if (!data) continue;
-
-            for (let key in data.options) {
-                const chapter = data.options[key];
-
-                if (chapter.id === user.currentNode) {
-                    if (userMessage === "1")
-                        return res.json({ reply: `📘 Summary:\n\n${chapter.summary}` });
-
-                    if (userMessage === "2")
-                        return res.json({ reply: `📖 Detailed Explanation:\n\n${chapter.detail}` });
-
-                    if (userMessage === "3")
-                        return res.json({ reply: `🧠 Simple Example:\n\n${chapter.example}` });
-
-                    if (userMessage === "4")
-                        return res.json({
-                            reply: `📄 Official PDF:\n\nEnglish:\n${chapter.pdf_en}\n\nGujarati:\n${chapter.pdf_gu}`
-                        });
-
-                    if (userMessage === "5")
-                        return res.json({
-                            reply: `🤓 Simple Explanation:\n\nThink of this like building a strong foundation before constructing a house.`
-                        });
-                }
-            }
         }
 
         return res.json({
@@ -245,17 +194,19 @@ app.post("/message", async(req, res) => {
 });
 
 // ===============================
-// 📌 START SERVER (Railway Safe)
+// 📌 START SERVER AFTER MONGO CONNECT
 // ===============================
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT} 🚀`);
-});
-
-// ===============================
-// 📌 MONGODB CONNECTION
-// ===============================
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB Connected ✅"))
-    .catch((err) => console.log("MongoDB Error ❌", err));
+    .then(() => {
+        console.log("MongoDB Connected ✅");
+
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT} 🚀`);
+        });
+    })
+    .catch((err) => {
+        console.log("MongoDB Error ❌", err);
+        process.exit(1);
+    });
